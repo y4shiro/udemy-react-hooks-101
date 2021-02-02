@@ -48,9 +48,18 @@ const EventForm = () => {
     }
   };
 
+  const deleteAllOperationLogs = e => {
+    e.preventDefault();
+    const result = window.confirm('全ての操作ログを削除してもよろしいですか？');
+    if (result) {
+      dispatch({ type: DELETE_ALL_OPERATION_LOGS });
+    }
+  };
+
   // ボタンの非活性管理
   const unCreatable = title === '' || body === '';
-  const unAllDeletable = state.events.length === 0;
+  const unAllEventsDeletable = state.events.length === 0;
+  const unAllOperationLogsDeletable = state.operationLogs.length === 0;
 
   return(
     <>
@@ -77,7 +86,12 @@ const EventForm = () => {
           />
         </div>
         <button className="btn btn-primary" onClick={addEvent} disabled={unCreatable}>イベントを作成する</button>
-        <button className="btn btn-danger" onClick={deleteAllEvents} disabled={unAllDeletable}>全てのイベントを削除する</button>
+        <button className="btn btn-danger" onClick={deleteAllEvents} disabled={unAllEventsDeletable}>全てのイベントを削除する</button>
+        <button
+          className="btn btn-danger"
+          onClick={deleteAllOperationLogs}
+          disabled={unAllOperationLogsDeletable}
+        >全ての操作ログを削除する</button>
       </form>
     </>
   );
