@@ -23,7 +23,7 @@ const EventForm = () => {
 
   // ボタンの非活性管理
   const unCreatable = title === '' || body === '';
-  const unAllDeletable = state.length === 0;
+  const unAllDeletable = state.events.length === 0;
 
   return(
     <>
